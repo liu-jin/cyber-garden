@@ -34,6 +34,13 @@ const CORE_ASSETS = {
     "/images/family-mother.svg",
     "/images/family-brother.svg",
     "/images/family-sister.svg",
+    // Phase 3: Hero Path - Body Parts & Armor
+    "/images/body-head.svg",
+    "/images/body-shoulders.svg",
+    "/images/body-knees.svg",
+    "/images/body-toes.svg",
+    "/images/armor-helmet.svg",
+    "/images/armor-chestplate.svg",
   ],
   audio: [
     "/audio/guide_opening.mp3",
@@ -55,6 +62,17 @@ const CORE_ASSETS = {
     "/audio/mother.mp3",
     "/audio/brother.mp3",
     "/audio/sister.mp3",
+    // Phase 3: Hero Path - Body Parts & Songs
+    "/audio/head.mp3",
+    "/audio/shoulders.mp3",
+    "/audio/knees.mp3",
+    "/audio/toes.mp3",
+    "/audio/song-head-shoulders.mp3",
+    "/audio/hello.mp3",
+    "/audio/thank_you.mp3",
+  ],
+  data: [
+    "/audio/rhythm-manifest.json",
   ],
 };
 
@@ -66,12 +84,16 @@ export const AssetPreloader: React.FC = () => {
     CORE_ASSETS.images.forEach((src) => {
       assetManager.preloadImage(src).catch(() => {});
     });
+    // 2. Preload Manifests
+    CORE_ASSETS.data.forEach((src) => {
+      assetManager.preloadData(src).catch(() => {});
+    });
   }, []);
 
   useEffect(() => {
-    // 2. Preload Audio only after AudioContext is unlocked
+    // 3. Preload Audio only after AudioContext is unlocked
     if (isAudioUnlocked) {
-      console.log("🛠️ [基建巡视] 正在为皇子预热音频资产库...");
+      console.log("🛠️ [基建巡视] 正在为皇子预热三期【英雄路】音频资产库...");
       CORE_ASSETS.audio.forEach((src) => {
         assetManager.preloadAudio(src).catch(() => {});
       });

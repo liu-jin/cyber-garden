@@ -7,12 +7,11 @@
 - **极简交互**：专为4岁儿童设计，减少文字依赖。
 - **高可用性**：由【赛博王朝】工部尚书守卫，确保部署丝滑。
 
-## 二期工程：【五色光】(Phase 2) - 进行中
-- **基座升级**：已切换至 `feature/phase-2-colors` 分支。
-- **资产预加载 (Pre-loading)**：已部署 [lib/asset-manager.ts](lib/asset-manager.ts) 与 [components/AssetPreloader.tsx](components/AssetPreloader.tsx)，已完成二期“五色光”全量资产（颜色、形状、亲族）的预热配置。
-- **动态染色支持**：已由工部尚书在 [scripts/optimize-assets.js](scripts/optimize-assets.js) 中完成 `currentColor` 巡检逻辑。
-- **叙事音轨分发**：已实现对 `_suffix.mp3` 的识别，支持中书令之叙事化教学策略.
-- **性能监控**：针对二期复杂逻辑，已预留毫秒级性能监控，守卫皇子流畅游园体验。
+## 三期工程：【英雄路】(Phase 3) - 进行中
+- **基建防线强化**：已开辟 `feature/phase-3-hero-path` 分支。
+- **资产预加载 (Pre-loading)**：已升级 `AssetManager` 支持 JSON 配置加载。
+- **音律同步基建**：在 [components/AssetPreloader.tsx](components/AssetPreloader.tsx) 中预设了人体部位、赛博装甲及儿歌律动素材的预热路径。
+- **流式性能监控**：针对三期大规模音频（儿歌），已在 `AssetManager` 中优化解码逻辑，确保“指尖即回响”。
 
 ## 异地部署与营建指南 (工部尚书)
 若欲在其他数字疆土（其他电脑）上复现【皇子英语乐园】，请依此步骤行事：

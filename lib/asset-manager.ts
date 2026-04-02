@@ -10,6 +10,7 @@ export class AssetManager {
   private static instance: AssetManager;
   private audioCache: Map<string, AudioBuffer> = new Map();
   private imageCache: Map<string, HTMLImageElement> = new Map();
+  private dataCache: Map<string, any> = new Map();
   private audioContext: AudioContext | null = null;
 
   private constructor() {}
@@ -23,6 +24,20 @@ export class AssetManager {
 
   setAudioContext(ctx: AudioContext) {
     this.audioContext = ctx;
+  }
+
+  async preloadData(src: string): Promise<any> {
+    if (this.dataCache.has(src)) return this.dataCache.get(src);
+    try {
+      const response = await fetch(src);
+      const data = await response.json();
+      this.dataCache.set(src, data);
+      console.log(`✅ [资产预热] 数据已就绪: ${src}`);
+      return data;
+    } catch (err) {
+      console.error(`❌ [资产预热失败] 数据: ${src}`, err);
+      throw err;
+    }
   }
 
   async preloadAudio(src: string): Promise<AudioBuffer> {
