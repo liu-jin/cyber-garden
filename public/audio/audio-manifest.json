@@ -1,0 +1,30 @@
+{
+  "voice_profile": "Royal Cyber Kingdom Voice (Friendly, Elegant, Encouraging)",
+  "scripts": {
+    "guide_opening": "Greetings! Welcome to our Royal Cyber Garden. I'm Dragon Kid. Let's explore the wonders of English in our Kingdom! Tap the magic gate to enter!",
+    "apple": "Apple. A sweet gift from our royal orchard.",
+    "banana": "Banana. A golden treasure from the sun.",
+    "lion": "Lion. The brave guardian of our kingdom.",
+    "elephant": "Elephant. The gentle giant of the cyber wild.",
+    "success": "Splendid! A gift from nature! You've earned a royal star sugar!"
+  },
+  "technical_params": {
+    "normalization": "-3dB",
+    "format": "mp3",
+    "sample_rate": "44100Hz",
+    "assets": {
+      "guide_opening": "assets/guide_opening.mp3",
+      "apple": "assets/apple.mp3",
+      "banana": "assets/banana.mp3",
+      "lion": "assets/lion.mp3",
+      "elephant": "assets/elephant.mp3",
+      "success": "assets/success.mp3"
+    },
+    "dynamic_suffixes": {
+      "apple": "assets/apple_suffix.mp3",
+      "banana": "assets/banana_suffix.mp3",
+      "lion": "assets/lion_suffix.mp3",
+      "elephant": "assets/elephant_suffix.mp3"
+    }
+  }
+}

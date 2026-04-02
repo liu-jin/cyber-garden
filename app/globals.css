@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 230, 255, 250; /* #E6FFFA */
+  --background-end-rgb: 230, 255, 250;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  overflow: hidden; /* Prevent scrolling for sandbox garden */
+  user-select: none; /* Prevent text selection for kids */
+  -webkit-touch-callout: none;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
