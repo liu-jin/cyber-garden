@@ -54,17 +54,24 @@ export const ColorsScene: React.FC = () => {
           animate={activeItem === color.id ? { y: [-20, 0, -20] } : {}}
           className="relative group flex flex-col items-center"
         >
-          {/* Fountain Animation Placeholder */}
-          <div className="w-24 h-64 bg-white/20 rounded-t-full relative overflow-hidden flex items-end justify-center">
+          {/* Fountain Animation with SVG */}
+          <div className="w-32 h-64 relative flex items-end justify-center">
              <motion.div 
-               className="w-full absolute bottom-0"
-               style={{ backgroundColor: color.hex }}
-               animate={{ height: ["40%", "80%", "40%"] }}
-               transition={{ repeat: Infinity, duration: 2, delay: Math.random() }}
-             />
-             <div className="absolute top-0 w-full h-full flex items-start justify-center pt-4">
-                <span className="text-4xl">⛲</span>
-             </div>
+               className="w-full h-full"
+               animate={activeItem === color.id ? { scale: [1, 1.1, 1] } : {}}
+             >
+                <SvgIcon src={color.icon} color={color.hex} className="w-full h-full" />
+             </motion.div>
+             
+             {activeItem === color.id && (
+                <motion.div 
+                  className="absolute top-0 w-full flex justify-center"
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: [0, 1, 0], y: -100 }}
+                >
+                   <span className="text-4xl" style={{ color: color.hex }}>✨</span>
+                </motion.div>
+             )}
           </div>
           
           <div className="mt-4 bg-white px-6 py-2 rounded-full shadow-lg border-4 border-white text-xl font-bold uppercase tracking-wider" style={{ color: color.hex }}>

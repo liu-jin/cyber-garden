@@ -51,7 +51,7 @@ export const FamilyScene: React.FC = () => {
           animate={activeItem === member.id ? { scale: 1.2, rotate: [0, 5, -5, 0] } : {}}
           className={`w-48 h-48 ${member.color} rounded-full shadow-2xl border-8 border-white flex items-center justify-center text-8xl relative overflow-visible`}
         >
-          <span>{member.label}</span>
+          <img src={member.label} alt={member.name} className="w-3/4 h-3/4 object-contain" />
           
           {activeItem === member.id && (
             <motion.div 

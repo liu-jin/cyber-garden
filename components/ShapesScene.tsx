@@ -65,10 +65,10 @@ export const ShapesScene: React.FC = () => {
   const [fittedShapes, setFittedShapes] = useState<Set<string>>(new Set());
 
   const shapes = [
-    { id: "circle", label: "🔴", targetX: -200, targetY: -100, name: "Circle" },
-    { id: "square", label: "🟦", targetX: 200, targetY: -100, name: "Square" },
-    { id: "triangle", label: "🔺", targetX: -200, targetY: 150, name: "Triangle" },
-    { id: "star", label: "⭐", targetX: 200, targetY: 150, name: "Star" },
+    { id: "circle", label: "/images/shape-circle.svg", targetX: -200, targetY: -100, name: "Circle" },
+    { id: "square", label: "/images/shape-square.svg", targetX: 200, targetY: -100, name: "Square" },
+    { id: "triangle", label: "/images/shape-triangle.svg", targetX: -200, targetY: 150, name: "Triangle" },
+    { id: "star", label: "/images/shape-star.svg", targetX: 200, targetY: 150, name: "Star" },
   ];
 
   const handleFit = async (shape: typeof shapes[0]) => {
