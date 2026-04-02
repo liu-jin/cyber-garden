@@ -6,7 +6,20 @@
     "banana": "Banana. A golden treasure from the sun.",
     "lion": "Lion. The brave guardian of our kingdom.",
     "elephant": "Elephant. The gentle giant of the cyber wild.",
-    "success": "Splendid! A gift from nature! You've earned a royal star sugar!"
+    "success": "Splendid! A gift from nature! You've earned a royal star sugar!",
+    "red": "Red! Bold and brave, like the dragon's heart!",
+    "blue": "Blue! Deep and calm, like our royal ocean.",
+    "yellow": "Yellow! Bright and warm, like the sun over our kingdom.",
+    "green": "Green! Full of life, like our emerald forests.",
+    "purple": "Purple! Noble and wise, the color of our crown.",
+    "circle": "A Circle! Round and smooth, like the palace wheels.",
+    "square": "A Square! Strong and steady, like our castle walls.",
+    "triangle": "A Triangle! Sharp and fast, like an arrow of light.",
+    "star": "A Star! Bright and shining, like the cyber sky.",
+    "father": "This is Father. He is strong and wise, the protector of our home.",
+    "mother": "This is Mother. She is gentle and kind, the moonlight of our kingdom.",
+    "brother": "This is Brother. He is energetic and smart, your best playmate!",
+    "sister": "This is Sister. She is sweet and clever, a little princess of our garden."
   },
   "technical_params": {
     "normalization": "-3dB",
@@ -18,13 +31,20 @@
       "banana": "assets/banana.mp3",
       "lion": "assets/lion.mp3",
       "elephant": "assets/elephant.mp3",
-      "success": "assets/success.mp3"
-    },
-    "dynamic_suffixes": {
-      "apple": "assets/apple_suffix.mp3",
-      "banana": "assets/banana_suffix.mp3",
-      "lion": "assets/lion_suffix.mp3",
-      "elephant": "assets/elephant_suffix.mp3"
+      "success": "assets/success.mp3",
+      "red": "assets/red.mp3",
+      "blue": "assets/blue.mp3",
+      "yellow": "assets/yellow.mp3",
+      "green": "assets/green.mp3",
+      "purple": "assets/purple.mp3",
+      "circle": "assets/circle.mp3",
+      "square": "assets/square.mp3",
+      "triangle": "assets/triangle.mp3",
+      "star": "assets/star.mp3",
+      "father": "assets/father.mp3",
+      "mother": "assets/mother.mp3",
+      "brother": "assets/brother.mp3",
+      "sister": "assets/sister.mp3"
     }
   }
 }
