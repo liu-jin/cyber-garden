@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useRef } from "react";
 import { useStore } from "../store/useStore";
+import { assetManager } from "../lib/asset-manager";
 
 interface AudioContextType {
   playAudio: (id: string) => Promise<void>;
@@ -18,6 +19,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (!audioContextRef.current) {
       const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
       audioContextRef.current = new AudioCtx();
+      assetManager.setAudioContext(audioContextRef.current);
     }
     
     if (audioContextRef.current.state === "suspended") {
@@ -43,9 +45,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
 
       try {
-        const response = await fetch(src);
-        const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContextRef.current.decodeAudioData(arrayBuffer);
+        // Use AssetManager to get or preload audio
+        let audioBuffer = assetManager.getAudio(src);
+        if (!audioBuffer) {
+          audioBuffer = await assetManager.preloadAudio(src);
+        }
 
         const source = audioContextRef.current.createBufferSource();
         source.buffer = audioBuffer;
@@ -58,7 +62,12 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         source.start(0);
       } catch (err) {
         console.error("Failed to play audio:", err);
-        reject(err);
+        // Fail silently for certain files (e.g., non-existent suffixes)
+        if (src.includes('_suffix')) {
+          resolve();
+        } else {
+          reject(err);
+        }
       }
     });
   };

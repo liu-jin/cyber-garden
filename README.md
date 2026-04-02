@@ -8,7 +8,8 @@
 - **高可用性**：由【赛博王朝】工部尚书守卫，确保部署丝滑。
 
 ## 二期工程：【五色光】(Phase 2) - 进行中
-- **基座升级**：已开辟 `feature/phase-2-colors` 分支。
+- **基座升级**：已切换至 `feature/phase-2-colors` 分支。
+- **资产预加载 (Pre-loading)**：已部署 [lib/asset-manager.ts](lib/asset-manager.ts) 与 [components/AssetPreloader.tsx](components/AssetPreloader.tsx)，实现图像与音频的静默预热，确保“指尖即回响”。
 - **动态染色支持**：已由工部尚书在 [scripts/optimize-assets.js](scripts/optimize-assets.js) 中完成 `currentColor` 巡检逻辑。
 - **叙事音轨分发**：已实现对 `_suffix.mp3` 的识别，支持中书令之叙事化教学策略.
 - **性能监控**：针对二期复杂逻辑，已预留毫秒级性能监控，守卫皇子流畅游园体验。

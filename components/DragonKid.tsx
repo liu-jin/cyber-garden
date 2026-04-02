@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useStore } from "../store/useStore";
 
+import { SvgIcon } from "./SvgIcon";
+
 export const DragonKid: React.FC = () => {
-  const { stars, activeItem } = useStore();
+  const { stars, activeItem, dragonColor } = useStore();
   const [animationState, setAnimationState] = useState<"idle" | "success">("idle");
 
   useEffect(() => {
@@ -34,7 +36,11 @@ export const DragonKid: React.FC = () => {
         }
         className="w-40 h-40 relative flex items-center justify-center"
       >
-        <img src="/images/dragon-kid.svg" alt="Dragon Kid" className="w-full h-full" />
+        <SvgIcon 
+          src="/images/dragon-kid.svg" 
+          color={dragonColor} 
+          className="w-full h-full"
+        />
         
         {/* Helmet Glowing Effect (Simulation) */}
         {animationState === "success" && (
