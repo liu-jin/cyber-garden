@@ -1,9 +1,9 @@
 "use client";
 
-import { useStore } from "@/store/useStore";
-import { MagicGate } from "@/components/MagicGate";
-import { DragonKid } from "@/components/DragonKid";
-import { useAudio } from "@/components/AudioProvider";
+import { useStore } from "../store/useStore";
+import { MagicGate } from "../components/MagicGate";
+import { DragonKid } from "../components/DragonKid";
+import { useAudio } from "../components/AudioProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef } from "react";
 
