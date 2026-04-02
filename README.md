@@ -10,8 +10,36 @@
 ## 二期工程：【五色光】(Phase 2) - 进行中
 - **基座升级**：已开辟 `feature/phase-2-colors` 分支。
 - **动态染色支持**：已由工部尚书在 [scripts/optimize-assets.js](scripts/optimize-assets.js) 中完成 `currentColor` 巡检逻辑。
-- **叙事音轨分发**：已实现对 `_suffix.mp3` 的识别，支持中书令之叙事化教学策略。
+- **叙事音轨分发**：已实现对 `_suffix.mp3` 的识别，支持中书令之叙事化教学策略.
 - **性能监控**：针对二期复杂逻辑，已预留毫秒级性能监控，守卫皇子流畅游园体验。
+
+## 异地部署与营建指南 (工部尚书)
+若欲在其他数字疆土（其他电脑）上复现【皇子英语乐园】，请依此步骤行事：
+
+### 1. 调取府库源码 (Clone)
+```bash
+git clone https://github.com/liu-jin/cyber-garden.git
+cd cyber-garden
+```
+
+### 2. 环境初始化 (Initialize)
+确保已安装 Node.js (v18.0+)，随后执行以下指令安装营建物资：
+```bash
+npm install
+```
+
+### 3. 开启幻境预览 (Development)
+```bash
+npm run dev
+```
+访问 `http://localhost:3000` 即可入园巡视。
+
+### 4. 正式筑城 (Production Build)
+若需正式发布，请执行以下精炼指令：
+```bash
+npm run build
+npm run start
+```
 
 ## 基础设施与运维 (工部尚书)
 - **基座环境**：已由兵部尚书完成 Next.js + Tailwind + Framer Motion 选型并完成基座注入。
