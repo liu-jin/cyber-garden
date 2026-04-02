@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useStore } from "../store/useStore";
 import { useAudio } from "./AudioProvider";
 
@@ -10,10 +10,10 @@ export const FamilyScene: React.FC = () => {
   const { playAudio } = useAudio();
 
   const members = [
-    { id: "father", label: "👨", name: "Father", color: "bg-blue-400" },
-    { id: "mother", label: "👩", name: "Mother", color: "bg-pink-400" },
-    { id: "brother", label: "👦", name: "Brother", color: "bg-green-400" },
-    { id: "sister", label: "👧", name: "Sister", color: "bg-yellow-400" },
+    { id: "father", icon: "/images/family-father.svg", name: "Father", accent: "from-blue-500/20 to-transparent" },
+    { id: "mother", icon: "/images/family-mother.svg", name: "Mother", accent: "from-pink-500/20 to-transparent" },
+    { id: "brother", icon: "/images/family-brother.svg", name: "Brother", accent: "from-green-500/20 to-transparent" },
+    { id: "sister", icon: "/images/family-sister.svg", name: "Sister", accent: "from-yellow-500/20 to-transparent" },
   ];
 
   const handleMemberClick = async (member: typeof members[0]) => {
@@ -28,6 +28,7 @@ export const FamilyScene: React.FC = () => {
       } catch {}
       
       addStar();
+      await playAudio("/audio/success.mp3");
     } catch (err) {
       console.error("Audio error:", err);
     } finally {
@@ -37,39 +38,57 @@ export const FamilyScene: React.FC = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -100 }}
-      className="p-12 h-screen relative flex items-center justify-center space-x-12 pt-32"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+      transition={{ duration: 0.8 }}
+      className="p-12 h-screen relative flex items-center justify-center gap-12 pt-40"
     >
-      {members.map((member) => (
+      <div className="absolute top-40 glass px-12 py-3 rounded-full border-white/30 text-white font-display font-black text-3xl uppercase tracking-[0.4em] shadow-2xl">
+         Our Royal Family
+      </div>
+
+      {members.map((member, idx) => (
         <motion.button
           key={member.id}
           onClick={() => handleMemberClick(member)}
           whileHover={{ scale: 1.1, y: -10 }}
           whileTap={{ scale: 0.9 }}
-          animate={activeItem === member.id ? { scale: 1.2, rotate: [0, 5, -5, 0] } : {}}
-          className={`w-48 h-48 ${member.color} rounded-full shadow-2xl border-8 border-white flex items-center justify-center text-8xl relative overflow-visible`}
+          animate={activeItem === member.id 
+            ? { scale: 1.15, rotate: [0, 5, -5, 0] } 
+            : { y: [0, -10, 0] }
+          }
+          transition={activeItem === member.id 
+            ? { duration: 0.5 } 
+            : { repeat: Infinity, duration: 4 + idx, ease: "easeInOut" }
+          }
+          className="relative group w-56 h-72 glass rounded-[80px] border-white/40 shadow-2xl flex flex-col items-center justify-center p-8 transition-all duration-500"
         >
-          <img src={member.label} alt={member.name} className="w-3/4 h-3/4 object-contain" />
+          <div className={`absolute inset-0 bg-gradient-to-tr ${member.accent} opacity-0 group-hover:opacity-100 transition-opacity rounded-[80px]`} />
           
-          {activeItem === member.id && (
-            <motion.div 
-              className="absolute -top-16 bg-white px-6 py-2 rounded-full shadow-lg border-4 border-dragon-blue text-dragon-blue font-black text-2xl uppercase"
-              initial={{ scale: 0, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-            >
-              {member.name}
-            </motion.div>
-          )}
+          <img 
+            src={member.icon} 
+            alt={member.name} 
+            className="w-full h-full object-contain relative z-10 neon-shadow drop-shadow-2xl transition-transform group-hover:scale-110" 
+          />
+          
+          <AnimatePresence>
+            {activeItem === member.id && (
+              <motion.div 
+                className="absolute -top-12 glass px-8 py-2 rounded-full border-white/40 shadow-2xl text-white font-display font-black text-2xl uppercase tracking-widest z-20"
+                initial={{ scale: 0, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0, y: -20 }}
+              >
+                {member.name}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          <div className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity rounded-full" />
+          {/* Pedestal Shadow */}
+          <div className="absolute bottom-4 w-3/4 h-4 bg-black/20 blur-xl rounded-full" />
         </motion.button>
       ))}
-      
-      <div className="absolute top-40 text-4xl font-black text-white drop-shadow-lg tracking-widest uppercase">
-         Our Royal Family!
-      </div>
     </motion.div>
   );
 };

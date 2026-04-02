@@ -25,7 +25,7 @@ export const SvgIcon: React.FC<SvgIconProps> = ({ src, color, className }) => {
 
   return (
     <div
-      className={className}
+      className={`${className} neon-shadow transition-all duration-300`}
       style={{ color: color }}
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />

@@ -11,10 +11,10 @@ export const GardenScene: React.FC = () => {
   const clickCountMap = useRef<Record<string, number>>({});
 
   const items = [
-    { id: "apple", label: "/images/apple.svg", name: "Apple", color: "bg-apple-red" },
-    { id: "banana", label: "/images/banana.svg", name: "Banana", color: "bg-banana-yellow" },
-    { id: "lion", label: "/images/lion.svg", name: "Lion", color: "bg-orange-400" },
-    { id: "elephant", label: "/images/elephant.svg", name: "Elephant", color: "bg-sky-blue" },
+    { id: "apple", label: "/images/apple.svg", name: "Apple", accent: "from-cyber-pink/20 to-transparent", glow: "shadow-cyber-pink/30" },
+    { id: "banana", label: "/images/banana.svg", name: "Banana", accent: "from-cyber-yellow/20 to-transparent", glow: "shadow-cyber-yellow/30" },
+    { id: "lion", label: "/images/lion.svg", name: "Lion", accent: "from-orange-400/20 to-transparent", glow: "shadow-orange-400/30" },
+    { id: "elephant", label: "/images/elephant.svg", name: "Elephant", accent: "from-cyber-blue/20 to-transparent", glow: "shadow-cyber-blue/30" },
   ];
 
   const handleItemClick = async (id: string) => {
@@ -30,8 +30,8 @@ export const GardenScene: React.FC = () => {
       } catch {}
       
       if (clickCountMap.current[id] >= 3) {
-        await playAudio("/audio/success.mp3");
         addStar();
+        await playAudio("/audio/success.mp3");
         clickCountMap.current[id] = 0;
       }
     } catch (err) {
@@ -43,31 +43,54 @@ export const GardenScene: React.FC = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -100 }}
-      className="p-12 h-screen relative grid grid-cols-2 gap-12 items-center justify-center pt-32"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="p-12 h-screen relative grid grid-cols-2 gap-16 items-center justify-center pt-40 max-w-6xl mx-auto"
     >
-      {items.map((item) => (
+      {items.map((item, idx) => (
         <motion.button
           key={item.id}
           onClick={() => handleItemClick(item.id)}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, rotate: idx % 2 === 0 ? 1 : -1 }}
           whileTap={{ scale: 0.95 }}
-          animate={activeItem === item.id ? { scale: 1.15, rotate: [0, 5, -5, 0] } : {}}
-          className={`relative aspect-square w-full max-w-[280px] mx-auto ${item.color} rounded-[64px] shadow-2xl border-8 border-white flex flex-col items-center justify-center p-8 transition-transform group`}
+          animate={activeItem === item.id 
+            ? { scale: 1.15, rotate: [0, 5, -5, 0], y: -20 } 
+            : { y: [0, -15, 0] }
+          }
+          transition={activeItem === item.id 
+            ? { duration: 0.6 } 
+            : { repeat: Infinity, duration: 4 + idx, ease: "easeInOut" }
+          }
+          className={`relative aspect-square w-full max-w-[320px] mx-auto glass rounded-5xl border-white/60 shadow-2xl flex flex-col items-center justify-center p-12 transition-all duration-500 group overflow-hidden ${item.glow}`}
         >
-          <img src={item.label} alt={item.name} className="w-4/5 h-4/5 object-contain" />
-          <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity rounded-[64px]" />
-          {activeItem === item.id && (
-             <motion.div 
-               className="absolute -top-10 bg-white px-6 py-2 rounded-full shadow-lg border-4 border-dragon-blue text-dragon-blue font-black text-2xl uppercase tracking-widest"
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-             >
-               {item.name}
-             </motion.div>
-          )}
+          <div className={`absolute inset-0 bg-gradient-to-tr ${item.accent} opacity-0 group-hover:opacity-100 transition-opacity`} />
+          
+          <img 
+            src={item.label} 
+            alt={item.name} 
+            className="w-full h-full object-contain relative z-10 filter drop-shadow-2xl transition-transform group-hover:scale-110" 
+          />
+
+          <AnimatePresence>
+            {activeItem === item.id && (
+               <motion.div 
+                 className="absolute -top-6 bg-royal-purple px-10 py-3 rounded-full shadow-2xl border-white/40 text-white font-display font-black text-3xl uppercase tracking-[0.2em] relative z-20"
+                 initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                 animate={{ opacity: 1, y: 0, scale: 1 }}
+                 exit={{ opacity: 0, scale: 1.2 }}
+               >
+                 {item.name}
+               </motion.div>
+            )}
+          </AnimatePresence>
+          
+          <div className="absolute bottom-6 flex gap-1 opacity-20">
+             {[...Array(3)].map((_, i) => (
+               <div key={i} className="w-1.5 h-1.5 rounded-full bg-royal-purple" />
+             ))}
+          </div>
         </motion.button>
       ))}
     </motion.div>

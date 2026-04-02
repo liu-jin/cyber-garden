@@ -30,32 +30,52 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#E6FFFA] overflow-hidden cursor-default">
+    <main className="relative min-h-screen bg-royal-pearl overflow-hidden cursor-default selection:bg-royal-purple/20">
       <AnimatePresence>
         {!hasEntered && <MagicGate key="gate" />}
       </AnimatePresence>
 
       {hasEntered && (
         <>
-          <SceneSwitcher />
+          {/* Top Layer: UI Navigation */}
+          <div className="relative z-40">
+            <SceneSwitcher />
+          </div>
           
-          <AnimatePresence mode="wait">
-             {renderScene()}
-          </AnimatePresence>
+          {/* Background Ambient Decor - Royal Style */}
+          <div className="fixed inset-0 pointer-events-none z-0">
+             <motion.div 
+                className="absolute top-[-5%] left-[5%] w-[45%] h-[45%] bg-cyber-mint/15 rounded-full blur-[100px]"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  x: [0, 20, 0]
+                }}
+                transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+             />
+             <motion.div 
+                className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-royal-purple/10 rounded-full blur-[140px]"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  y: [0, -30, 0]
+                }}
+                transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
+             />
+          </div>
 
-          <DragonKid />
+          {/* Main Scene Container */}
+          <div className="relative z-10 w-full h-full min-h-screen">
+            <AnimatePresence mode="wait">
+               {renderScene()}
+            </AnimatePresence>
+          </div>
+
+          {/* Persistent Mascot */}
+          <div className="relative z-30">
+            <DragonKid />
+          </div>
           
-          {/* Subtle Ambient Background Elements */}
-          <motion.div 
-             className="absolute top-10 left-10 w-48 h-48 bg-white opacity-20 rounded-full blur-3xl"
-             animate={{ scale: [1, 1.2, 1] }}
-             transition={{ repeat: Infinity, duration: 5 }}
-          />
-          <motion.div 
-             className="absolute bottom-20 left-1/4 w-32 h-32 bg-sky-100 opacity-30 rounded-full blur-2xl"
-             animate={{ scale: [1, 1.5, 1], y: [0, -20, 0] }}
-             transition={{ repeat: Infinity, duration: 8 }}
-          />
+          {/* Subtle Grainy Overlay */}
+          <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-repeat z-[100]" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
         </>
       )}
     </main>
