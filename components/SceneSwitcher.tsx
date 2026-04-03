@@ -12,6 +12,7 @@ export const SceneSwitcher: React.FC = () => {
     { id: "COLORS", label: "🌈", name: "Colors" },
     { id: "SHAPES", label: "📐", name: "Shapes" },
     { id: "FAMILY", label: "👨‍👩‍👧", name: "Family" },
+    { id: "BODY_PARTS", label: "🛡️", name: "Hero" },
   ];
 
   return (

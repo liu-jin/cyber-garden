@@ -7,8 +7,15 @@ import { useStore } from "../store/useStore";
 import { SvgIcon } from "./SvgIcon";
 
 export const DragonKid: React.FC = () => {
-  const { stars, activeItem, dragonColor } = useStore();
+  const { stars, activeItem, dragonColor, equippedItems, currentScene } = useStore();
   const [animationState, setAnimationState] = useState<"idle" | "success">("idle");
+
+  const armorLayers = [
+    { id: "head", src: "/images/armor/head.svg", socket: "top-[-5%] left-[10%] w-[80%] z-20" },
+    { id: "shoulders", src: "/images/armor/shoulders.svg", socket: "top-[25%] left-[0%] w-[100%] z-10" },
+    { id: "knees", src: "/images/armor/knees.svg", socket: "bottom-[15%] left-[10%] w-[80%] z-20" },
+    { id: "toes", src: "/images/armor/toes.svg", socket: "bottom-[-5%] left-[5%] w-[90%] z-10" },
+  ];
 
   useEffect(() => {
     if (activeItem) {

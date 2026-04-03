@@ -24,6 +24,8 @@ export default function Home() {
         return <ShapesScene key="shapes" />;
       case "FAMILY":
         return <FamilyScene key="family" />;
+      case "BODY_PARTS":
+        return <BodyPartsScene key="body-parts" />;
       default:
         return <GardenScene key="garden" />;
     }
