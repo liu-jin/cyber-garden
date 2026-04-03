@@ -35,12 +35,10 @@ const CORE_ASSETS = {
     "/images/family-brother.svg",
     "/images/family-sister.svg",
     // Phase 3: Hero Path - Body Parts & Armor
-    "/images/body-head.svg",
-    "/images/body-shoulders.svg",
-    "/images/body-knees.svg",
-    "/images/body-toes.svg",
-    "/images/armor-helmet.svg",
-    "/images/armor-chestplate.svg",
+    "/images/armor/head.svg",
+    "/images/armor/shoulders.svg",
+    "/images/armor/knees.svg",
+    "/images/armor/toes.svg",
   ],
   audio: [
     "/audio/guide_opening.mp3",
@@ -62,14 +60,6 @@ const CORE_ASSETS = {
     "/audio/mother.mp3",
     "/audio/brother.mp3",
     "/audio/sister.mp3",
-    // Phase 3: Hero Path - Body Parts & Songs
-    "/audio/head.mp3",
-    "/audio/shoulders.mp3",
-    "/audio/knees.mp3",
-    "/audio/toes.mp3",
-    "/audio/song-head-shoulders.mp3",
-    "/audio/hello.mp3",
-    "/audio/thank_you.mp3",
   ],
   data: [
     "/audio/rhythm-manifest.json",
