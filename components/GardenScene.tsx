@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useStore } from "../store/useStore";
 import { useAudio } from "./AudioProvider";
 

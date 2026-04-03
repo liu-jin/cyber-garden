@@ -62,7 +62,7 @@ const CORE_ASSETS = {
     "/audio/sister.mp3",
   ],
   data: [
-    "/audio/rhythm-manifest.json",
+    "/audio/audio-manifest.json",
   ],
 };
 
