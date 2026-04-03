@@ -30,9 +30,9 @@ export const DragonKid: React.FC = () => {
   const isCentral = currentScene === "BODY_PARTS";
 
   return (
-    <div className={`fixed transition-all duration-1000 ease-in-out flex flex-col items-center pointer-events-none ${
+    <div className={`fixed transition-all duration-1000 ease-in-out flex flex-col pointer-events-none ${
       isCentral 
-        ? "bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2" 
+        ? "bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 items-center" 
         : "bottom-10 right-10 items-end"
     }`}>
       {/* Dragon Kid Mascot */}
