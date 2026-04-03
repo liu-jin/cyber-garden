@@ -11,6 +11,7 @@ const PARTS: Part[] = ["head", "shoulders", "knees", "toes"];
 
 export const BodyPartsScene: React.FC = () => {
   const { equipItem, addStar, setActiveItem } = useStore();
+  const { playAudio } = useAudio();
   const [currentTarget, setCurrentTarget] = useState<Part | null>(null);
   const [showHint, setShowHint] = useState(false);
 
@@ -22,21 +23,32 @@ export const BodyPartsScene: React.FC = () => {
     return () => clearTimeout(startTimer);
   }, []);
 
-  const pickNewTarget = () => {
-    const remaining = PARTS; // Could filter out already equipped ones if desired
+  const pickNewTarget = async () => {
+    const remaining = PARTS; 
     const next = remaining[Math.floor(Math.random() * remaining.length)];
     setCurrentTarget(next);
-    setActiveItem(next); // Triggers audio via AudioProvider (ideally)
+    setActiveItem(next); 
     setShowHint(false);
+    
+    try {
+      await playAudio(`/audio/command_${next}.mp3`);
+    } catch (err) {
+      console.error("Audio failed:", err);
+    }
   };
 
-  const handleTouch = (part: Part) => {
+  const handleTouch = async (part: Part) => {
     if (part === currentTarget) {
       // Correct!
       equipItem(part);
       addStar();
-      setActiveItem(`${part}_success`); // Optional success sound
+      setActiveItem(`${part}_success`); 
       
+      try {
+        await playAudio(`/audio/success.mp3`);
+        await playAudio(`/audio/${part}.mp3`);
+      } catch {}
+
       // Delay before next target
       setTimeout(() => {
         pickNewTarget();
@@ -45,6 +57,9 @@ export const BodyPartsScene: React.FC = () => {
       // Wrong - gentle feedback
       setActiveItem(`${part}_wrong`); 
       setShowHint(true);
+      try {
+        await playAudio(`/audio/wrong.mp3`);
+      } catch {}
     }
   };
 
@@ -86,7 +101,6 @@ export const BodyPartsScene: React.FC = () => {
                 : "hover:bg-white/10"
             }`}
           >
-            {/* Visual hint for development/accessibility if needed */}
             <span className="sr-only">{spot.id}</span>
           </button>
         ))}
@@ -120,19 +134,6 @@ export const BodyPartsScene: React.FC = () => {
               x: [Math.random() * 1000, Math.random() * 1000],
               y: [Math.random() * 1000, Math.random() * 1000],
               scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 10 + Math.random() * 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-           scale: [1, 1.5, 1],
             }}
             transition={{
               duration: 10 + Math.random() * 20,
