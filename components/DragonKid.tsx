@@ -27,21 +27,30 @@ export const DragonKid: React.FC = () => {
     }
   }, [activeItem]);
 
+  const isCentral = currentScene === "BODY_PARTS";
+
   return (
-    <div className="fixed bottom-10 right-10 flex flex-col items-end pointer-events-none">
+    <div className={`fixed transition-all duration-1000 ease-in-out flex flex-col items-center pointer-events-none ${
+      isCentral 
+        ? "bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2" 
+        : "bottom-10 right-10 items-end"
+    }`}>
       {/* Dragon Kid Mascot */}
       <motion.div
         animate={
           animationState === "success"
-            ? { rotate: [0, 360], scale: [1, 1.25, 1], filter: ["blur(0px)", "blur(2px)", "blur(0px)"] }
-            : { y: [0, -10, 0] }
+            ? { rotate: [0, 360], scale: isCentral ? [2, 2.5, 2] : [1, 1.25, 1], filter: ["blur(0px)", "blur(2px)", "blur(0px)"] }
+            : { 
+                y: [0, -10, 0],
+                scale: isCentral ? 2.5 : 1
+              }
         }
         transition={
           animationState === "success"
             ? { duration: 1, ease: [0.22, 1, 0.36, 1] }
             : { repeat: Infinity, duration: 4, ease: "easeInOut" }
         }
-        className="w-44 h-44 relative flex items-center justify-center mb-4"
+        className={`${isCentral ? "w-64 h-64" : "w-44 h-44"} relative flex items-center justify-center mb-4 transition-all duration-1000`}
       >
         <div className="absolute inset-0 bg-white/30 rounded-full blur-3xl scale-75" />
         <SvgIcon 
@@ -49,6 +58,23 @@ export const DragonKid: React.FC = () => {
           color={dragonColor} 
           className="w-full h-full relative z-10 neon-shadow drop-shadow-xl"
         />
+
+        {/* Dynamic Armor Layers */}
+        <AnimatePresence>
+          {armorLayers.map((armor) => (
+            equippedItems.includes(armor.id) && (
+              <motion.div
+                key={armor.id}
+                initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                className={`absolute ${armor.socket} pointer-events-none`}
+              >
+                 <img src={armor.src} alt={armor.id} className="w-full h-full neon-shadow" />
+              </motion.div>
+            )
+          ))}
+        </AnimatePresence>
         
         {/* Helmet Glowing Effect (Simulation) */}
         <AnimatePresence>
