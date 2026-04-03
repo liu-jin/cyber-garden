@@ -14,9 +14,11 @@ export const BodyPartsScene: React.FC = () => {
   const { playAudio } = useAudio();
   const [currentTarget, setCurrentTarget] = useState<Part | null>(null);
   const [showHint, setShowHint] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   // Initialize game
   useEffect(() => {
+    setIsMounted(true);
     const startTimer = setTimeout(() => {
       pickNewTarget();
     }, 1500);
@@ -126,7 +128,7 @@ export const BodyPartsScene: React.FC = () => {
 
       {/* Ambient Pearl Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {isMounted && [...Array(15)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-4 h-4 bg-white rounded-full blur-sm opacity-20"
