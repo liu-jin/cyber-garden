@@ -1,0 +1,19 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pearl-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  <!-- Left Knee -->
+  <circle cx="30" cy="50" r="15" fill="url(#pearl-grad)" stroke="white" stroke-width="1.5" />
+  <path d="M25,50 L35,50 M30,45 L30,55" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  
+  <!-- Right Knee -->
+  <circle cx="70" cy="50" r="15" fill="url(#pearl-grad)" stroke="white" stroke-width="1.5" />
+  <path d="M65,50 L75,50 M70,45 L70,55" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  
+  <!-- Joint Glow -->
+  <circle cx="30" cy="50" r="4" fill="currentColor" fill-opacity="0.3" />
+  <circle cx="70" cy="50" r="4" fill="currentColor" fill-opacity="0.3" />
+</svg>

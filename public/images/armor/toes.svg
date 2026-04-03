@@ -1,0 +1,15 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pearl-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  <!-- Left Boot/Toes -->
+  <path d="M15,70 Q15,50 30,50 L45,50 Q50,50 50,60 L50,80 Q50,85 40,85 L20,85 Q15,85 15,75 Z" fill="url(#pearl-grad)" stroke="white" stroke-width="1" />
+  <rect x="25" y="80" width="15" height="2" rx="1" fill="currentColor" opacity="0.5" />
+  
+  <!-- Right Boot/Toes -->
+  <path d="M85,70 Q85,50 70,50 L55,50 Q50,50 50,60 L50,80 Q50,85 60,85 L80,85 Q85,85 85,75 Z" fill="url(#pearl-grad)" stroke="white" stroke-width="1" />
+  <rect x="60" y="80" width="15" height="2" rx="1" fill="currentColor" opacity="0.5" />
+</svg>

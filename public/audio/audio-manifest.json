@@ -19,7 +19,15 @@
     "father": "This is Father. He is strong and wise, the protector of our home.",
     "mother": "This is Mother. She is gentle and kind, the moonlight of our kingdom.",
     "brother": "This is Brother. He is energetic and smart, your best playmate!",
-    "sister": "This is Sister. She is sweet and clever, a little princess of our garden."
+    "sister": "This is Sister. She is sweet and clever, a little princess of our garden.",
+    "head": "Head! Where our royal crown rests.",
+    "shoulders": "Shoulders! Strong and steady.",
+    "knees": "Knees! Ready for the next adventure.",
+    "toes": "Toes! Tiny and fast, like the dragon's feet.",
+    "command_head": "Dragon Kid says: Touch your head!",
+    "command_shoulders": "Dragon Kid says: Touch your shoulders!",
+    "command_knees": "Dragon Kid says: Touch your knees!",
+    "command_toes": "Dragon Kid says: Touch your toes!"
   },
   "technical_params": {
     "normalization": "-3dB",
